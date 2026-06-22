@@ -5,6 +5,7 @@ import { useHash } from 'react-use'
 import injectStyles from './App.css?inline'
 import { ElementNode } from './CustomNodes'
 import { CustomOverlay } from './CustomOverlay'
+import { DiagramFrame } from './DiagramFrame'
 import { useCustomOverlay } from './context'
 
 const renderNodes = {
@@ -21,7 +22,7 @@ function App() {
 
   return (
     <ReactLikeC4
-      colorScheme='dark'
+      colorScheme='light'
       viewId={viewId}
       controls
       fitViewPadding={{
@@ -30,7 +31,7 @@ function App() {
         right: '30px',
         bottom: '30px',
       }}
-      background='dots'
+      background='transparent'
       enableElementDetails
       enableFocusMode
       enableSearch
@@ -44,6 +45,7 @@ function App() {
     >
       {/* Inject the custom styles inside the shadow DOM */}
       <style type="text/css" dangerouslySetInnerHTML={{ __html: injectStyles }} />
+      <DiagramFrame />
       <CustomOverlay />
     </ReactLikeC4>
   )

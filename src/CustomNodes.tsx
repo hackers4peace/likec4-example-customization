@@ -5,8 +5,7 @@ import {
   ElementNodeContainer,
   xyflow,
   elementNode,
-  useDiagram,
-  useLikeC4Styles
+  useDiagram
 } from 'likec4/react';
 import { useDeferredValue } from 'react';
 import { Fragment } from 'react/jsx-runtime';
@@ -19,17 +18,21 @@ export const ElementNode = elementNode(({ nodeModel, nodeProps }) => {
   // This is how we can access the diagram
   const diagram = useDiagram();
 
-  // This is how we can access the colors
-  const _color = useLikeC4Styles().colors(nodeModel.color);
-
   const isHovered = useDeferredValue(!!nodeProps.data.hovered);
 
   const isHoveredOrSelected = isHovered || nodeProps.selected;
 
+  const isDataStore = nodeModel.element.getMetadata()._shape === 'data-store';
+  const sq = isDataStore
+    ? Math.min(nodeProps.data.height - 2, Math.max(36, nodeProps.data.width * 0.18))
+    : 0;
+
   return (
     <ElementNodeContainer nodeProps={nodeProps}>
       <CustomShape nodeModel={nodeModel} nodeProps={nodeProps} />
-      <ElementData {...nodeProps} />
+      <div style={{ paddingLeft: sq }}>
+        <ElementData {...nodeProps} />
+      </div>
       <ElementActions {...nodeProps}
         extraButtons={[{
           key: 'bolt',

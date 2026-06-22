@@ -1,25 +1,41 @@
 specification {
+  // Single custom color; amber/sky are built-in keys overridden in likec4.config.ts.
+  color pink #f3d9f2
+
+  // External entities are drawn as plain amber/yellow rectangles in the figure,
+  // not as a person glyph.
   element actor {
     style {
-      shape person
+      shape rectangle
+      color amber
     }
   }
-  element softwareSystem
-  element container
-  element component
+  element softwareSystem {
+    style {
+      color sky
+    }
+  }
+  element container {
+    style {
+      color amber
+    }
+  }
+  element component {
+    style {
+      color amber
+    }
+  }
   element database {
     style {
       shape storage
+      color amber
     }
   }
   element external {
     style {
-      color muted
+      color amber
     }
   }
-
-  color yellow #f1c40f
-
 }
 
 model {
@@ -43,21 +59,30 @@ model {
 
   saas = softwareSystem 'Demo System' {
     summary 'A demo system showing architecture modeling with LikeC4 DSL'
-  
+
 
     // Containers inside the system
     web = container 'Frontend' {
-      technology 'React + TypeScript'
-      description 'Single Page App served from CDN'
-      style {
-        icon tech:react
-        shape browser
+      metadata {
+        _shape 'process'
       }
     }
 
     backend = container 'Backend Cluster' 'Kotlin services' {
-      icon tech:kotlin
-      description 'Set of microservices handling business logic'
+      metadata {
+        _shape 'process'
+      }
+    }
+
+    // Special node — rendered as a pink/lavender ellipse (see CustomShapes).
+    certificate = component 'SSL/TLS Certificate' {
+      description 'Secures traffic between clients and the backend'
+      style {
+        color pink
+      }
+      metadata {
+        _shape 'data-object'
+      }
     }
   }
 
@@ -65,9 +90,6 @@ model {
   stripe = external 'Stripe' {
     description 'Payments provider'
     link https://stripe.com
-    metadata {
-      _shape 'stripe'
-    }
   }
   cloudflare = external 'Cloudflare CDN' {
     icon tech:cloudflare
@@ -77,21 +99,17 @@ model {
     }
   }
   analyticsDb = database 'Analytics DB' {
-    technology 'Clickhouse'
     description 'Time-series analytics store'
-    style {
-      color yellow
-      icon ./clickhouse.svg
-    }
+   
     metadata {
-      region 'EU'
-      sla '99.9%'
+      _shape 'data-store'
     }
   }
 
   customer -> web 'interacts with'
   web -> backend 'GraphQL requests'
   backend -> stripe 'charge card'
+  backend -> certificate 'secures traffic'
 
   analyticsTeam -> analyticsDb 'query / build reports'
 
