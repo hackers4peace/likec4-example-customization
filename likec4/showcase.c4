@@ -8,7 +8,7 @@ model {
   }
 
   webBrowser = ThreatContainer 'C1 Web Browser' {
-    web = Process 'Frontend' {
+    web = Process 'P1 Browser Process' {
       metadata {
         _shape 'process'
       }
@@ -21,7 +21,7 @@ model {
   }
 
   webServer = ThreatContainer 'C3 Web Server' {
-    backend = Process 'Backend Cluster' {
+    backend = Process 'P3 Server Process' {
       metadata {
         _shape 'process'
       }
