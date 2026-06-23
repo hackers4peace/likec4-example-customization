@@ -1,82 +1,68 @@
 specification {
-  // Single custom color; amber/sky are built-in keys overridden in likec4.config.ts.
   color pink #f3d9f2
 
-  // External entities are drawn as plain amber/yellow rectangles in the figure,
-  // not as a person glyph.
-  element actor {
-    style {
-      shape rectangle
-      color amber
-    }
-  }
-  element softwareSystem {
+  element ThreatContainer {
     style {
       color sky
     }
   }
-  element container {
-    style {
-      color amber
-    }
+  element Process {
   }
-  element component {
-    style {
-      color amber
-    }
+
+  element DataObject {
   }
-  element database {
-    style {
-      shape storage
-      color amber
-    }
+
+  element DataStore {
   }
-  element external {
-    style {
-      color amber
-    }
+
+  element ExternalEntity {
   }
 }
 
 model {
-  // Top-level actors and systems
-  customer = actor 'Customer' {
-    description 'End user interacting with the product via web or mobile.'
-    link https://example.com/customer-docs
+  dnsServer = ThreatContainer 'C2 DNS Server' {
+    summary 'TODO'
 
-    metadata {
-      attr1 'value1'
-      attr2 'value2'
+    dns = Process 'P2 DNS Resolver' {
+      metadata {
+        _shape 'process'
+      }
     }
   }
 
-  analyticsTeam = actor 'Analytics Team' {
-    description 'Responsible for analytics and reporting.'
-    metadata {
-      attr1 'analytics team'
-    }
-  }
+  webBrowser = ThreatContainer 'C1 Web Browser' {
+    summary 'TODO'
 
-  saas = softwareSystem 'Demo System' {
-    summary 'A demo system showing architecture modeling with LikeC4 DSL'
-
-
-    // Containers inside the system
-    web = container 'Frontend' {
+    web = Process 'Frontend' {
       metadata {
         _shape 'process'
       }
     }
 
-    backend = container 'Backend Cluster' 'Kotlin services' {
+    browserStorage = DataStore 'S1 Browser Data Storage' {
+      metadata {
+        _shape 'data-store'
+      }
+    }
+  }
+
+  webServer = ThreatContainer 'C3 Web Server' {
+    summary 'TODO'
+
+
+    backend = Process 'Backend Cluster' 'Kotlin services' {
       metadata {
         _shape 'process'
       }
     }
 
-    // Special node — rendered as a pink/lavender ellipse (see CustomShapes).
-    certificate = component 'SSL/TLS Certificate' {
-      description 'Secures traffic between clients and the backend'
+    serverStorage = DataStore 'S2 Server Data Storage' {
+      metadata {
+        _shape 'data-store'
+      }
+    }
+
+    certificate = DataObject 'O1 SSL/TLS Certificate' {
       style {
         color pink
       }
@@ -86,44 +72,35 @@ model {
     }
   }
 
-  // External services
-  stripe = external 'Stripe' {
-    description 'Payments provider'
-    link https://stripe.com
-  }
-  cloudflare = external 'Cloudflare CDN' {
-    icon tech:cloudflare
-    description 'Static assets'
-    metadata {
-      region 'US'
-    }
-  }
-  analyticsDb = database 'Analytics DB' {
-    description 'Time-series analytics store'
-   
-    metadata {
-      _shape 'data-store'
-    }
+  user = ExternalEntity 'E1 User' {
   }
 
-  customer -> web 'interacts with'
-  web -> backend 'GraphQL requests'
-  backend -> stripe 'charge card'
-  backend -> certificate 'secures traffic'
+  websiteAdmin = ExternalEntity 'E2 Website Admin' {
+  }
 
-  analyticsTeam -> analyticsDb 'query / build reports'
+  networkOperator = ExternalEntity 'E3 Network Operator' {
+  }
 
-  web -> cloudflare 'serve static bundle'
-  backend -> analyticsDb 'write aggregated stats'
+  websiteAppProviders = ExternalEntity 'E4 Website Application Providers' {
+  }
 
+  isp = ExternalEntity 'E5 Internet Service Provider' {
+  }
+
+  publicSectorOfficials = ExternalEntity 'E6 Public Sector Officials' {
+  }
+
+  user -> web 'F1 User Interactions'
+  web -> dns 'F2 DNS Resolution'
+  web -> browserStorage 'F3 Session Tracking'
+  web -> backend 'F4 HTTP(S) Requests'
+  backend -> serverStorage 'F5 Server Data Retrieval'
+  websiteAdmin -> webServer 'F6 Website Administration'
+  networkOperator -> dns 'F7 Network Administration'
 }
 
 views {
   view index {
-    include *, saas.*
-  }
-
-  view saas of saas {
-    include *
+    include *, webBrowser.*, webServer.*, dnsServer.*
   }
 }
