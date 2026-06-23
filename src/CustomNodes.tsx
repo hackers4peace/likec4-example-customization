@@ -3,7 +3,7 @@ import {
   ElementActions,
   ElementData,
   ElementNodeContainer,
-  XYFlow,
+  xyflow,
   elementNode,
   useDiagram,
   useLikeC4Styles
@@ -33,7 +33,7 @@ export const ElementNode = elementNode(({ nodeModel, nodeProps }) => {
       <ElementActions {...nodeProps}
         extraButtons={[{
           key: 'bolt',
-          icon: <IconBolt/>,
+          icon: <IconBolt />,
           onClick(e) {
             e.stopPropagation();
             open(nodeModel.id);
@@ -42,10 +42,10 @@ export const ElementNode = elementNode(({ nodeModel, nodeProps }) => {
       />
       <DefaultHandles />
       {(isHoveredOrSelected && nodeModel.element.hasMetadata()) && (
-        <XYFlow.NodeToolbar
+        <xyflow.NodeToolbar
           isVisible
           offset={0}
-          position={XYFlow.Position.Top}
+          position={xyflow.Position.Top}
           align={'center'}
           data-likec4-color={nodeProps.data.color}
           // ❇️ This is a class from styles.css
@@ -60,30 +60,30 @@ export const ElementNode = elementNode(({ nodeModel, nodeProps }) => {
             <div className='metadata'>
               {Object.entries(nodeModel.element.getMetadata()).map(([key, value]) => (
                 <Fragment key={key}>
-                <div data-metadata-key>{key}</div>
-                <div data-metadata-value>{value}</div>
-              </Fragment>))}
+                  <div data-metadata-key>{key}</div>
+                  <div data-metadata-value>{value}</div>
+                </Fragment>))}
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={(e) => {
-                  e.stopPropagation();
-                  diagram.openElementDetails(nodeModel.id)
-                }}>
+                e.stopPropagation();
+                diagram.openElementDetails(nodeModel.id)
+              }}>
                 Open Details
               </button>
               <button onClick={(e) => {
-                  e.stopPropagation();
-                  diagram.focusNode(nodeModel.id)
-                }}
+                e.stopPropagation();
+                diagram.focusNode(nodeModel.id)
+              }}
               >Focus</button>
             </div>
           </div>
-        </XYFlow.NodeToolbar>
+        </xyflow.NodeToolbar>
       )}
     </ElementNodeContainer>
   );
 })
 
 const IconBolt = () => (
-  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="200px" width="200px" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M12 2.02c-5.51 0-9.98 4.47-9.98 9.98s4.47 9.98 9.98 9.98 9.98-4.47 9.98-9.98S17.51 2.02 12 2.02zm0 17.96c-4.4 0-7.98-3.58-7.98-7.98S7.6 4.02 12 4.02 19.98 7.6 19.98 12 16.4 19.98 12 19.98zM12.75 5l-4.5 8.5h3.14V19l4.36-8.5h-3z"></path></svg>
+  <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="200px" width="200px" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M12 2.02c-5.51 0-9.98 4.47-9.98 9.98s4.47 9.98 9.98 9.98 9.98-4.47 9.98-9.98S17.51 2.02 12 2.02zm0 17.96c-4.4 0-7.98-3.58-7.98-7.98S7.6 4.02 12 4.02 19.98 7.6 19.98 12 16.4 19.98 12 19.98zM12.75 5l-4.5 8.5h3.14V19l4.36-8.5h-3z"></path></svg>
 )
