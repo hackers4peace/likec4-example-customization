@@ -10,7 +10,7 @@
   autoLayout: {
     direction: 'TB',
   },
-  hash: 'fu8fvstnO4OXkv7iHxEXuEjR2kctggU30LlZlNvicD0',
+  hash: 'xdhBQfvglR8E0ORlRPo1V4v9tWoi14cjDY8K-LYxesY',
   bounds: {
     x: 59,
     y: -228,
@@ -37,7 +37,7 @@
         size: 'md',
       },
       tags: [],
-      kind: 'external',
+      kind: 'ExternalEntity',
       x: 91,
       y: 481,
       width: 320,
@@ -70,7 +70,7 @@
         size: 'md',
       },
       tags: [],
-      kind: 'external',
+      kind: 'ExternalEntity',
       x: 89,
       y: 77,
       width: 320,
@@ -103,7 +103,7 @@
         size: 'md',
       },
       tags: [],
-      kind: 'external',
+      kind: 'ExternalEntity',
       x: 1457,
       y: 69,
       width: 320,
@@ -141,9 +141,6 @@
         opacity: 100,
         size: 'md',
       },
-      description: {
-        txt: 'TODO',
-      },
       tags: [],
       kind: 'ThreatContainer',
       depth: 1,
@@ -177,7 +174,7 @@
         size: 'md',
       },
       tags: [],
-      kind: 'external',
+      kind: 'ExternalEntity',
       x: 1459,
       y: 1244,
       width: 327,
@@ -208,7 +205,7 @@
         size: 'md',
       },
       tags: [],
-      kind: 'external',
+      kind: 'ExternalEntity',
       x: 765,
       y: -208,
       width: 320,
@@ -239,7 +236,7 @@
         size: 'md',
       },
       tags: [],
-      kind: 'external',
+      kind: 'ExternalEntity',
       x: 79,
       y: 1123,
       width: 320,
@@ -279,7 +276,7 @@
       metadata: {
         _shape: 'process',
       },
-      kind: 'container',
+      kind: 'Process',
       x: 748,
       y: 486,
       width: 320,
@@ -304,7 +301,7 @@
       outEdges: [],
       title: 'S1 Browser Data Storage',
       modelRef: 'webBrowser.browserStorage',
-      shape: 'storage',
+      shape: 'rectangle',
       color: 'amber',
       style: {
         border: 'solid',
@@ -315,7 +312,7 @@
       metadata: {
         _shape: 'data-store',
       },
-      kind: 'database',
+      kind: 'DataStore',
       x: 752,
       y: 742,
       width: 320,
@@ -351,9 +348,6 @@
         border: 'solid',
         opacity: 100,
         size: 'md',
-      },
-      description: {
-        txt: 'TODO',
       },
       tags: [],
       kind: 'ThreatContainer',
@@ -392,16 +386,13 @@
         opacity: 100,
         size: 'md',
       },
-      description: {
-        txt: 'TODO',
-      },
       tags: [],
       kind: 'ThreatContainer',
       depth: 1,
-      x: 716,
-      y: 34,
-      width: 384,
-      height: 265,
+      x: 706,
+      y: 27,
+      width: 404,
+      height: 282,
       labelBBox: {
         x: 6,
         y: 0,
@@ -431,23 +422,20 @@
         opacity: 100,
         size: 'md',
       },
-      description: {
-        txt: 'Kotlin services',
-      },
       tags: [],
       metadata: {
         _shape: 'process',
       },
-      kind: 'container',
+      kind: 'Process',
       x: 1458,
       y: 501,
       width: 320,
       height: 180,
       labelBBox: {
         x: 85,
-        y: 65,
+        y: 76,
         width: 151,
-        height: 47,
+        height: 24,
       },
       navigateTo: null,
       links: null,
@@ -472,7 +460,7 @@
       metadata: {
         _shape: 'data-object',
       },
-      kind: 'component',
+      kind: 'DataObject',
       x: 1459,
       y: 969,
       width: 320,
@@ -509,7 +497,7 @@
       metadata: {
         _shape: 'process',
       },
-      kind: 'container',
+      kind: 'Process',
       x: 748,
       y: 87,
       width: 320,
@@ -534,7 +522,7 @@
       outEdges: [],
       title: 'S2 Server Data Storage',
       modelRef: 'webServer.serverStorage',
-      shape: 'storage',
+      shape: 'rectangle',
       color: 'amber',
       style: {
         border: 'solid',
@@ -545,7 +533,7 @@
       metadata: {
         _shape: 'data-store',
       },
-      kind: 'database',
+      kind: 'DataStore',
       x: 1456,
       y: 743,
       width: 320,
@@ -563,62 +551,52 @@
   edges: [
     {
       id: '78o4wp',
-      parent: null,
       source: 'user',
       target: 'webBrowser.web',
       label: 'F1 User Interactions',
+      points: [
+        [
+          545,
+          573,
+        ],
+        [
+          613,
+          573,
+        ],
+      ],
+      labelBBox: {
+        x: 506,
+        y: 584,
+        width: 130,
+        height: 18,
+      },
+      parent: null,
       relations: [
-        'phdlz0',
+        '198wydh',
       ],
       color: 'gray',
       line: 'solid',
       head: 'normal',
-      points: [
-        [
-          1068,
-          481,
-        ],
-        [
-          1068,
-          525,
-        ],
-        [
-          1068,
-          578,
-        ],
-        [
-          1068,
-          623,
-        ],
-      ],
-      labelBBox: {
-        x: 504,
-        y: 570,
-        width: 130,
-        height: 18,
-      },
-      isLabelCustomized: true,
+      tail: 'normal',
       controlPoints: [
         {
-          x: 565,
-          y: 570,
+          x: 545,
+          y: 573,
+        },
+        {
+          x: 613,
+          y: 573,
         },
       ],
+      isLabelCustomized: true,
       navigateTo: null,
       tags: null,
     },
     {
       id: '18d9utr',
-      parent: 'webBrowser',
       source: 'webBrowser.web',
       target: 'webBrowser.browserStorage',
       label: 'F3 Session Tracking',
-      relations: [
-        '1sogjn3',
-      ],
-      color: 'gray',
-      line: 'solid',
-      head: 'normal',
       points: [
         [
           508,
@@ -643,28 +621,28 @@
         width: 132,
         height: 18,
       },
-      isLabelCustomized: true,
+      parent: 'webBrowser',
+      relations: [
+        'dsqlze',
+      ],
+      color: 'gray',
+      line: 'solid',
+      head: 'normal',
       controlPoints: [
         {
           x: 909,
           y: 701,
         },
       ],
+      isLabelCustomized: false,
       navigateTo: null,
       tags: null,
     },
     {
       id: '1glxkuv',
-      parent: null,
       source: 'webBrowser.web',
       target: 'webServer.backend',
       label: 'F4 HTTP(S) Requests',
-      relations: [
-        '6sljv4',
-      ],
-      color: 'gray',
-      line: 'solid',
-      head: 'normal',
       points: [
         [
           952,
@@ -689,28 +667,28 @@
         width: 142,
         height: 18,
       },
-      isLabelCustomized: true,
+      parent: null,
+      relations: [
+        '1o68bxt',
+      ],
+      color: 'gray',
+      line: 'solid',
+      head: 'normal',
       controlPoints: [
         {
           x: 1277,
           y: 579,
         },
       ],
+      isLabelCustomized: false,
       navigateTo: null,
       tags: null,
     },
     {
       id: '18i8xf6',
-      parent: 'webServer',
       source: 'webServer.backend',
       target: 'webServer.serverStorage',
       label: 'F5 Server Data Retrieval',
-      relations: [
-        '1fs8b6b',
-      ],
-      color: 'gray',
-      line: 'solid',
-      head: 'normal',
       points: [
         [
           1011,
@@ -735,28 +713,28 @@
         width: 158,
         height: 18,
       },
-      isLabelCustomized: true,
+      parent: 'webServer',
+      relations: [
+        'peb4id',
+      ],
+      color: 'gray',
+      line: 'solid',
+      head: 'normal',
       controlPoints: [
         {
           x: 1615,
           y: 708,
         },
       ],
+      isLabelCustomized: false,
       navigateTo: null,
       tags: null,
     },
     {
       id: '17ee71b',
-      parent: null,
       source: 'networkOperator',
       target: 'dnsServer.dns',
       label: 'F7 Network Administration',
-      relations: [
-        'szva6b',
-      ],
-      color: 'gray',
-      line: 'solid',
-      head: 'normal',
       points: [
         [
           2062,
@@ -781,28 +759,28 @@
         width: 168,
         height: 18,
       },
-      isLabelCustomized: true,
+      parent: null,
+      relations: [
+        'ygu6gu',
+      ],
+      color: 'gray',
+      line: 'solid',
+      head: 'normal',
       controlPoints: [
         {
           x: 565,
           y: 171,
         },
       ],
+      isLabelCustomized: false,
       navigateTo: null,
       tags: null,
     },
     {
       id: '1pdynz7',
-      parent: null,
       source: 'webBrowser.web',
       target: 'dnsServer.dns',
       label: 'F2 DNS Resolution',
-      relations: [
-        'ekabgl',
-      ],
-      color: 'gray',
-      line: 'solid',
-      head: 'normal',
       points: [
         [
           1228,
@@ -839,7 +817,13 @@
         width: 124,
         height: 18,
       },
-      isLabelCustomized: false,
+      parent: null,
+      relations: [
+        '1ye3xon',
+      ],
+      color: 'gray',
+      line: 'solid',
+      head: 'normal',
       controlPoints: [
         {
           x: 904,
@@ -850,21 +834,15 @@
           y: 339,
         },
       ],
+      isLabelCustomized: false,
       navigateTo: null,
       tags: null,
     },
     {
       id: '1jegcr',
-      parent: null,
       source: 'websiteAdmin',
       target: 'webServer',
       label: 'F6 Website Administration',
-      relations: [
-        'n60ejz',
-      ],
-      color: 'gray',
-      line: 'solid',
-      head: 'normal',
       points: [
         [
           638,
@@ -889,13 +867,20 @@
         width: 167,
         height: 18,
       },
-      isLabelCustomized: false,
+      parent: null,
+      relations: [
+        '5rwd2j',
+      ],
+      color: 'gray',
+      line: 'solid',
+      head: 'normal',
       controlPoints: [
         {
           x: 1620,
           y: 350,
         },
       ],
+      isLabelCustomized: false,
       navigateTo: null,
       tags: null,
     },
