@@ -41,14 +41,14 @@ model {
     }
   }
 
-  user = ExternalEntity 'E1 User'
+  websiteUser = ExternalEntity 'E1 User'
   websiteAdmin = ExternalEntity 'E2 Website Admin'
   networkOperator = ExternalEntity 'E3 Network Operator'
   websiteAppProviders = ExternalEntity 'E4 Website Application Providers'
   isp = ExternalEntity 'E5 Internet Service Provider'
   publicSectorOfficials = ExternalEntity 'E6 Public Sector Officials'
 
-  user -> web 'F1 User Interactions'
+  websiteUser -> web 'F1 User Interactions'
   web -> dns 'F2 DNS Resolution'
   web -> browserStorage 'F3 Session Tracking'
   web -> backend 'F4 HTTP(S) Requests'
