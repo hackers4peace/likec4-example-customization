@@ -1,0 +1,67 @@
+model {
+  public = ThreatContainer 'Public Client Provider' {
+    pwa = Process 'PWA / SPA' {
+      metadata {
+        _shape 'process'
+      }
+    }
+    token = DataObject 'Token' {
+      style {
+        color pink
+      }
+      metadata {
+        _shape 'data-object'
+      }
+    }
+  }
+
+  confidential = ThreatContainer 'Confidential Client Provider' {
+    frontend = Process 'Frontend' {
+      metadata {
+        _shape 'process'
+      }
+    }
+    backend = Process 'Backend' {
+      metadata {
+        _shape 'process'
+      }
+    }
+    token = DataObject 'Token' {
+      style {
+        color pink
+      }
+      metadata {
+        _shape 'data-object'
+      }
+    }
+    key = DataObject 'Private Key' {
+      style {
+        color pink
+      }
+      metadata {
+        _shape 'data-object'
+      }
+    }
+  }
+
+  public.pwa -> public.token 'stores'
+  public.pwa -> owner.as 'authN'
+  confidential.backend -> confidential.token 'stores'
+  confidential.backend -> confidential.key 'signs with'
+  confidential.frontend -> confidential.backend 'api'
+  confidential.backend -> owner.as 'authN'
+  userAs.as -> public.token 'issues'
+  userAs.as -> confidential.token 'issues'
+}
+
+
+views {
+  view apps {
+    title 'Apps'
+    include
+    public, public.*,
+    confidential, confidential.*,
+    owner, owner.*,
+    userAs,userAs.as,
+  }
+}

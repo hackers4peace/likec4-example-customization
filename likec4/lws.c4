@@ -66,6 +66,7 @@ model {
 
 views {
   view lws {
+    title 'Basic'
     include
     userId, userAs, userId.*, userAs.*, userActor,
     app, app.*, appActor,
